@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="flight.js"></script>
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+        <div class="booking-form">
+            <h3>Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label id="phone-total" for="">First Class ($150)</label>
+                    <input id="phone-count" class="inp-style inp-width" type="number" name="">
+                </div>
+                <div class="plus-minus-btn">
+                    <p><span onclick="handleEconomyChange('phone',true);">+</span>
+                    <span onclick="handleEconomyChange('phone',false);">-</span></p>
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label id="case-total" for="">Economy ($100)</label>
+                    <input id="case-count" class="inp-style inp-width" type="number" name="">
+                </div>
+                <div class="plus-minus-btn">
+                    <p> <span onclick="handleEconomyChange('case',true)">+</span>
+                         <span onclick="handleEconomyChange('case',false)">-</span> </p>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p id="total-price">$500</p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$50</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$550</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style">Book Now</button>
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+        </div>
+    </section>
+    <script>
+
+        function handleEconomyChange(product,isIncrease){
+            const ProductInput = document.getElementById(product + '-count');
+            const ProductCount = parseInt(ProductInput.value);
+            let ProductNewCount = ProductCount;
+            if(isIncrease == true){
+                ProductNewCount = ProductCount + 1;
+            }
+            if(isIncrease == false && ProductCount > 0){
+                ProductNewCount = ProductCount - 1;
+            }
+            ProductInput.value = ProductNewCount;
+            // const economyTotal = ProductCount * 100;
+            let ProductTotal = 0;
+            if(product == 'phone'){
+                ProductTotal = ProductNewCount * 150;
+            }
+            if(product == 'case'){
+                ProductTotal = ProductNewCount * 100;
+            }
+            document.getElementById(product + '-total').innerText = '$' + ProductTotal;
+            calculateTotal();
+        }
+
+        function calculateTotal(){
+            const phoneInput = document.getElementById("phone-count");
+            const phoneCount = parseInt(phoneInput.value);
+
+            const caseInput = document.getElementById("case-count");
+            const caseCount = parseInt(caseInput.value);
+            const totalPrice = phoneCount * 150 + caseCount * 100;
+            document.getElementById('total-price').innerText = totalPrice;
+        }
+        
+        // function handleFirstClassChange(isIncrease){
+        //     const FirstClassInput = document.getElementById('FirstClass-count');
+        //     const FirstClassCount = parseInt(FirstClassInput.value);
+        //     let FirstClassNewCount = FirstClassCount;
+        //     if(isIncrease == true){
+        //         FirstClassNewCount = FirstClassCount + 1;
+        //     }
+        //     if(isIncrease == false && FirstClassCount > 0){
+        //         FirstClassNewCount = FirstClassCount - 1;
+        //     }
+        //     FirstClassInput.value = FirstClassNewCount;
+        //     const FirstClassTotal = FirstClassNewCount * 150;
+        //     document.getElementById('FirstClass-total').innerText = '$'+FirstClassTotal;
+        // }
+
+        // function handleEconomyChange(isIncrease){
+        //     const economyInput = document.getElementById('economy-count');
+        //     const economyCount = parseInt(economyInput.value);
+        //     let economyNewCount = economyCount;
+        //     if(isIncrease == true){
+        //         economyCount = economyCount + 1;
+        //     }
+        //     if(isIncrease == false && economyCount > 0){
+        //         economyCount = economyCount - 1;
+        //     }
+        //     economyInput.value = economyNewCount;
+        //     const economyTotal = economyCount * 100;
+        //     document.getElementById('economy-total').innerText = '$' + economyTotal;
+        // }
+
+
+        // document.getElementById('economy-increase').addEventListener('click',function(){
+        //    const economyInput = document.getElementById('economy-count');
+        //    const economyCount = parseInt(economyInput.value);
+        //    const economyNewCount = economyCount + 1;
+        //    economyInput.value = economyNewCount;
+        //    const economyTotal = economyNewCount * 100;
+        //    document.getElementById('economy-total').innerText = '$' + economyTotal;
+        // })
+
+        // document.getElementById('economy-decrease').addEventListener('click',function(){
+        //     const economyInput = document.getElementById('economy-count');
+        //     const economyCount = parseInt(economyInput.value);
+        //     const economyNewCount = economyCount - 1;
+        //     economyInput.value = economyNewCount;
+        //     const economyTotal = economyNewCount * 100;
+        //     document.getElementById('economy-total').innerText = '$'+economyTotal;
+        // })
+
+        // document.getElementById('case-increase').addEventListener('click',function(){
+        //    const caseInput = document.getElementById('case-count');
+        //    const caseCount = parseInt(caseInput.value);
+        //    const caseNewCount = caseCount + 1;
+        //    caseInput.value = caseNewCount;
+        //    const caseTotal = caseNewCount * 150;
+        //    document.getElementById('case-total').innerText = '$'+caseTotal;
+        // })
+
+        // document.getElementById('case-decrease').addEventListener('click',function(){
+        //     const caseInput = document.getElementById('case-count');
+        //     const caseCount = parseInt(caseInput.value);
+        //     const caseNewCount = caseCount - 1;
+        //     caseInput.value = caseNewCount;
+        //     const caseTotal = caseNewCount * 150;
+        //     document.getElementById('case-total').innerText = '$'+caseTotal;
+        // })
+    </script>
+</body>
+
+</html>
